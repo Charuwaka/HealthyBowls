@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cc="clr-namespace:plant.CustomControls"
+              xmlns:vm="clr-namespace:plant.ViewModels"
+             Visual="Material"
+             BackgroundColor="#7d9ff5"
+             x:Class="plant.DetailsPage">
+    <ContentPage.BindingContext>
+        <vm:FoodViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Grid AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.8*"/>
+                </Grid.RowDefinitions>
+                <Grid  Grid.Row="0" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="back.png" Grid.Column="0"  Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" VerticalOptions="Start" Margin="12,12,0,0"/>
+                    <Label Text="Details" Grid.Column="1" TextColor="White" FontSize="Large" FontFamily="{StaticResource MontserratLight}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="12,12,12,0"/>
+                    <Image Source="menu.png" Grid.Column="2"  Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="End" VerticalOptions="Start" Margin="12,12,12,0"/>
+                </Grid>
+
+
+                <cc:RoundBottomCornerFrame IsClippedToBounds="True" Grid.Row="1" BackgroundColor="White">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                             <RowDefinition Height="0.2*"/>
+                            <RowDefinition Height="0.6*"/>
+                            <RowDefinition Height="0.1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="1" VerticalOptions="CenterAndExpand" Margin="0,12,0,0">
+                            <StackLayout >
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label Text="Avacado" FontFamily="{StaticResource MontserratBold}" HorizontalOptions="Start" FontAttributes="Bold" TextColor="#160B24" FontSize="Title" Margin="24,0,0,0"/>
+                                    <Label Text="Bowl" FontFamily="{StaticResource MontserratLight}" HorizontalOptions="Start" FontAttributes="None" TextColor="#160B24" FontSize="Title" Margin="06,0,0,0"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Label Text="$24.00"  TextColor="Gray" FontSize="Title" FontFamily="{StaticResource MontserratLight}" HorizontalOptions="Start" VerticalOptions="Start" Margin="24,12,12,0"/>
+                                    <BoxView HeightRequest="30" WidthRequest="1" BackgroundColor="Gray" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="0,12,0,0"/>
+                                    <Frame IsClippedToBounds="True" HasShadow="True" CornerRadius="20" BackgroundColor="#7d9ff5" HorizontalOptions="End" Padding="0" VerticalOptions="Fill" >
+                                        <StackLayout Orientation="Horizontal" WidthRequest="120"  Padding="0" Spacing="0">
+                                            <Image Margin="12,0,0,0" Source="minuswhite.png" HeightRequest="15" WidthRequest="15"  Aspect="AspectFit" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                                            <Label Text="1" TextColor="White" FontSize="Subtitle" FontFamily="{StaticResource MontserratLight}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+                                            <Image Source="pluswhite.png" HeightRequest="15" WidthRequest="15" Aspect="AspectFit" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Margin="0,0,12,0"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                                <CollectionView ItemsSource="{Binding CaloriesList}" HeightRequest="105" WidthRequest="55" Margin="0,24,0,0">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ContentView>
+                                            <Frame IsClippedToBounds="True" CornerRadius="18" WidthRequest="55" HeightRequest="105" BackgroundColor="#7d9ff5" Padding="10" Margin="15,0,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                                <StackLayout>
+                                                    <Label Text="{Binding Name}" TextColor="White" FontSize="Micro" FontFamily="{StaticResource MontserratLight}" HorizontalOptions="StartAndExpand" VerticalOptions="Start" />
+                                                    <Label Text="{Binding ValueType}" TextColor="White" FontAttributes="Bold" FontSize="Micro" FontFamily="{StaticResource MontserratLight}" HorizontalOptions="StartAndExpand" VerticalOptions="EndAndExpand" />
+                                                </StackLayout>
+                                            </Frame>
+                                                </ContentView>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                      <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout Orientation="Horizontal" />
+                                    </CollectionView.ItemsLayout>
+                                </CollectionView>
+
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Row="2" ColumnSpacing="12" Margin="24,0,24,0">
+                            <Button HorizontalOptions="FillAndExpand" CornerRadius="12" HeightRequest="80" VerticalOptions="EndAndExpand" FontFamily="{StaticResource MontserratLight}" BackgroundColor="#160B24" Text=">>>>   $52" TextColor="White"/>
+                        </Grid>
+                    </Grid>
+                </cc:RoundBottomCornerFrame>
+
+            </Grid>
+            <Image x:Name="MyImage" Source="plate5.png" AbsoluteLayout.LayoutBounds=".5,0,0.6,0.6" AbsoluteLayout.LayoutFlags="All"  WidthRequest="400" Aspect="AspectFit"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,12,0,0"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

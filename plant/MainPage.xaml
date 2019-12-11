@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:vm="clr-namespace:plant.ViewModels"
+            mc:Ignorable="d"
+            Visual="Material"
+            xmlns:cc="clr-namespace:plant.CustomControls"
+            x:Class="plant.MainPage"
+            BackgroundColor="#FF21BFBD">
+    <ContentPage.BindingContext>
+        <vm:FoodViewModel/>
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="0" HorizontalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="back.png" Grid.Column="0"  Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" VerticalOptions="Start" Margin="12,12,0,0"/>
+            <Image Source="filter.png" Grid.Column="1"  Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="End" VerticalOptions="Start" Margin="12,12,12,0"/>
+            <Image Source="menu.png" Grid.Column="2"  Aspect="AspectFit" HeightRequest="25" WidthRequest="25" HorizontalOptions="End" VerticalOptions="Start" Margin="12,12,12,0"/>
+        </Grid>
+
+        <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="0">
+            <Label Text="Healthy" FontFamily="{StaticResource MontserratBold}" HorizontalOptions="Start" FontAttributes="Bold" TextColor="White" FontSize="Title" Margin="42,0,0,0"/>
+            <Label Text="Bowls" FontFamily="{StaticResource MontserratLight}" HorizontalOptions="Start" FontAttributes="None" TextColor="White" FontSize="Title" Margin="06,0,0,0"/>
+        </StackLayout>
+        <cc:RoundCornerFrame Grid.Row="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.9*"/>
+                    <RowDefinition Height="0.1*"/>
+                </Grid.RowDefinitions>
+                <ListView Grid.Row="0" ItemsSource="{Binding FoodList}"
+                  HasUnevenRows="true" SeparatorVisibility="None" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Grid.Row="0" Orientation="Horizontal" HeightRequest="75" Padding="18">
+                                    <Image Source="{Binding Src}" Aspect="AspectFit" HeightRequest="75" WidthRequest="75"/>
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Name}" TextColor="Black" FontFamily="{StaticResource MontserratBold}"/>
+                                        <Label Text="{Binding Price}" FontSize="Subtitle" TextColor="Gray" FontFamily="{StaticResource MontserratLight}"/>
+                                    </StackLayout>
+                                    <ImageButton BackgroundColor="Transparent" Command="{Binding AddToCart}" CommandParameter="{Binding .}" BorderColor="Transparent" BorderWidth="0" Source="plus.png" HorizontalOptions="EndAndExpand" Margin="0,0,12,0" VerticalOptions="Center" Aspect="AspectFit"  HeightRequest="15" WidthRequest="15"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Grid Grid.Row="1" ColumnSpacing="12" Margin="24,0,24,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.15*"/>
+                        <ColumnDefinition Width="0.7*"/>
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Grid.Column="0" BackgroundColor="Transparent" CornerRadius="8" BorderColor="Gray" BorderWidth="0.3" Source="search.png" Padding="15" Aspect="AspectFit" />
+                    <Label Text="{Binding CartCount,Mode=TwoWay}" TextColor="#160B24" FontSize="Small" Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" Margin="0,0,6,0"/>
+                    <ImageButton Grid.Column="1" BackgroundColor="Transparent" CornerRadius="8"  BorderColor="Gray" BorderWidth="0.3" Source="cart.png" Padding="15" Aspect="AspectFit" />
+                    <Button Grid.Column="2" Command="{Binding Checkout}"  CornerRadius="12" BackgroundColor="#160B24" Text="Checkout" TextColor="White"/>
+                </Grid>
+
+
+            </Grid>
+        </cc:RoundCornerFrame>
+
+    </Grid>
+
+</ContentPage>
